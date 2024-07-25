@@ -53,6 +53,7 @@ jobs:
           # engagement: '1'  
       - name: Show response
         run: |
+          cat trivy-scan-report.json
           set -e
           printf '%s\n' '${{ steps.import-scan.outputs.response }}'
       - name: List directory contents for debugging
