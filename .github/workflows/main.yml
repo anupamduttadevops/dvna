@@ -3,7 +3,7 @@ name: Build and Scan Docker Image
 on:
   push:
     branches:
-      - masster
+      - master
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
@@ -28,6 +28,10 @@ jobs:
           image-ref: vulnerable-image:latest
           format: 'json'
           output: 'trivy-scan-report.json'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM'
 
       - name: List directory contents for debugging
         run: ls -la
